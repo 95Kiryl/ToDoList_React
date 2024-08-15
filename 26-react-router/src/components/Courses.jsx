@@ -1,7 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 import courses from '../data/courses.js';
+import { useState } from 'react';
+
+const sortCourses = (courses, key) => {
+  const sortedCourses = [...courses];
+  sortedCourses.sort((a, b) => a[key] - b[key]);
+  return sortedCourses;
+};
 
 const Courses = () => {
+  const location = useLocation();
+  const query = queryString.parse(location.search);
+  const [sortKey, setSortKey] = useState(query.sort);
+  const [sortedCourses, setSortedCourses] = useState();
   return (
     <>
       <h1>Courses</h1>
