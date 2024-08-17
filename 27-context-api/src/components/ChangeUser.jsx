@@ -1,11 +1,33 @@
 import UserContext from '../context/UserContext';
 import { useContext } from 'react';
+import { useState } from 'react';
+
 const ChangeUser = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
+
+  const [userName, setUserName] = useState('');
+
   return (
-    <button onClick={() => setUser(user === 'Bogdan' ? 'Alice' : 'Bogdan')}>
-      Change!
-    </button>
+    <>
+      <input
+        type="text"
+        name="userName"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+      />
+      <button
+        onClick={() => {
+          if (!userName) {
+            setUser('Enter new name');
+          } else {
+            setUser(userName);
+            setUserName('');
+          }
+        }}
+      >
+        Change!
+      </button>
+    </>
   );
 };
 
