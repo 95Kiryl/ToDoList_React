@@ -7,7 +7,7 @@ import createBookWithID from '../../utils/createBookWithID';
 
 const BookForm = () => {
     const [title, setTitle] = useState('');
-    const [autor, setAutor] = useState('');
+    const [author, setAuthor] = useState('');
     const dispatch = useDispatch();
 
     const handelAddRandomBook = () => {
@@ -19,10 +19,10 @@ const BookForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (title && autor) {
-            dispatch(addBook(createBookWithID({ title, autor })));
+        if (title && author) {
+            dispatch(addBook(createBookWithID({ title, author })));
             setTitle('');
-            setAutor('');
+            setAuthor('');
         }
     }
 
@@ -39,12 +39,12 @@ const BookForm = () => {
                         onChange={(e) => setTitle(e.target.value)} />
                 </div>
                 <div>
-                    <label htmlFor="autor">Autor: </label>
+                    <label htmlFor="autor">Author: </label>
                     <input
                         type='text'
-                        id='autor'
-                        value={autor}
-                        onChange={(e) => setAutor(e.target.value)} />
+                        id='author'
+                        value={author}
+                        onChange={(e) => setAuthor(e.target.value)} />
                 </div>
                 <button type='submit'>Add Book</button>
                 <button type="button" onClick={handelAddRandomBook}>Add Random</button>
